@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models import User, UserProfile, BloodCenter
+from api.models import User, UserProfile, BloodCenter, Donor, History, GetName
 
 
 class BloodCenterSerializer(serializers.ModelSerializer):
@@ -12,10 +12,45 @@ class BloodCenterSerializer(serializers.ModelSerializer):
         ]
 
 
+class DonorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Donor
+        fields = [
+            'id',
+            'name',
+            'gender',
+            'phone_num',
+            'age',
+            'blood_type',
+            'admin_id',
+        ]
+
+
+class HistorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = History
+        fields = [
+            'date',
+            'user_id',
+        ]
+
+
+class GetNameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GetName
+        fields = [
+            'date',
+            'name',
+        ]
+
+
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
-        fields = ('mobile',)
+        fields = (
+            'mobile',
+            'bloodCenter',
+        )
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -45,6 +80,7 @@ class UserSerializer(serializers.ModelSerializer):
         instance.save()
 
         profile.mobile = profile_data.get('mobile', profile.mobile)
+        profile.bloodCenter = profile_data.get('bloodCenter', profile.bloodCenter)
         profile.save()
 
         return instance
