@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api.apps.ApiConfig',
+    'users.apps.UsersConfig',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
@@ -106,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
-AUTH_USER_MODEL = 'api.User'
+AUTH_USER_MODEL = 'users.User'
 
 LANGUAGE_CODE = 'en-us'
 
