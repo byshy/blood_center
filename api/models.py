@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 
@@ -44,7 +45,7 @@ class UserProfile(models.Model):
 
 
 class History(models.Model):
-    date = models.DateTimeField('date-time created')
+    date = models.DateTimeField('date-time created', default=timezone.now)
     user_id = models.ForeignKey(Donor, on_delete=models.CASCADE)
     blood_center_id = models.ForeignKey(BloodCenter, on_delete=models.DO_NOTHING)
 
