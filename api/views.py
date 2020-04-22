@@ -5,9 +5,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from api.models import BloodCenter, Donor
+from api.models import BloodCenter, Donor, History
 from api.permissions import ReadOnly
-from api.serializers import BloodCenterSerializer, DonorSerializer
+from api.serializers import BloodCenterSerializer, DonorSerializer, HistorySerializer
 
 
 class BloodCenterListView(generics.ListAPIView):
@@ -63,3 +63,29 @@ class DonorView(APIView):
             return Response(content)
         except Http404:
             return Response({'msg': 'element not found', 'status': status.HTTP_404_NOT_FOUND})
+
+
+class HistoryListView(generics.ListAPIView):
+    http_method_names = ['get']
+    permission_classes = [IsAuthenticated]
+    serializer_class = HistorySerializer
+    queryset = History.objects.all()
+
+    # def get_object(self, user_id):
+    #     try:
+    #         return History.objects.get(user_id=user_id)
+    #     except History.DoesNotExist:
+    #         raise Http404
+
+    # def get(self, request, user_id):
+    #     try:
+    #         history = self.get_object(user_id)
+    #         serializer = HistorySerializer(history)
+    #         content = {
+    #             'data': serializer.data,
+    #             'msg': 'element retrieved successfully',
+    #             'status': status.HTTP_200_OK
+    #         }
+    #         return Response(content)
+    #     except Http404:
+    #         return Response({'msg': 'element not found', 'status': status.HTTP_404_NOT_FOUND})

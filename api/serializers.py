@@ -31,7 +31,7 @@ class HistorySerializer(serializers.ModelSerializer):
         model = History
         fields = [
             'date',
-            'user_id',
+            'blood_center_id',
         ]
 
 

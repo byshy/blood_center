@@ -33,6 +33,9 @@ class BloodCenter(models.Model):
     latitude = models.FloatField()
     name = models.CharField(max_length=100, primary_key=True)
 
+    def __str__(self):
+        return "{}".format(self.name)
+
 
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
@@ -43,6 +46,10 @@ class UserProfile(models.Model):
 class History(models.Model):
     date = models.DateTimeField('date-time created')
     user_id = models.ForeignKey(Donor, on_delete=models.CASCADE)
+    blood_center_id = models.ForeignKey(BloodCenter, on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return "{} {}".format(self.date, self.user_id)
 
     class Meta:
         unique_together = (("date", "user_id"),)
