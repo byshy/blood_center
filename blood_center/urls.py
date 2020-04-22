@@ -20,5 +20,6 @@ import api
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(('api.urls', 'api'), namespace='api_home'))
+    path('', include(('api.urls', 'api'), namespace='api_home')),
+    path('users/', include(('users.urls', 'users'), namespace='users')),
 ]

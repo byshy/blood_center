@@ -35,11 +35,3 @@ class History(models.Model):
 
     class Meta:
         unique_together = (("date", "user_id"),)
-
-
-class GetName(models.Model):
-    name = models.ForeignKey(BloodCenter, on_delete=models.DO_NOTHING)
-    date = models.ForeignKey(History, on_delete=models.DO_NOTHING)
-
-    class Meta:
-        unique_together = (("date", "name"),)

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models import BloodCenter, Donor, History, GetName
+from api.models import BloodCenter, Donor, History
 
 
 class BloodCenterSerializer(serializers.ModelSerializer):
@@ -32,13 +32,4 @@ class HistorySerializer(serializers.ModelSerializer):
         fields = [
             'date',
             'blood_center_id',
-        ]
-
-
-class GetNameSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = GetName
-        fields = [
-            'date',
-            'name',
         ]
