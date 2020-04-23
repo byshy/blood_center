@@ -10,7 +10,7 @@ class Donor(models.Model):
     phone_num = models.CharField(max_length=13)
     age = models.IntegerField()
     blood_type = models.CharField(max_length=3)
-    admin_id = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return "{} {}".format(self.id, self.name)
