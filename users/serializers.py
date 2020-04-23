@@ -7,7 +7,6 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields = (
-            'mobile',
             'bloodCenter',
         )
 
@@ -17,7 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('pk', 'email', 'first_name', 'last_name', 'password', 'profile')
+        fields = ('pk', 'email', 'first_name', 'last_name', 'password', 'profile', 'mobile')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
@@ -38,7 +37,6 @@ class UserSerializer(serializers.ModelSerializer):
         instance.email = validated_data.get('email', instance.email)
         instance.save()
 
-        profile.mobile = profile_data.get('mobile', profile.mobile)
         profile.bloodCenter = profile_data.get('bloodCenter', profile.bloodCenter)
         profile.save()
 

@@ -4,12 +4,29 @@ from users.models import User
 
 
 class Donor(models.Model):
+    GENDERS_LIST = (
+        (1, 'male'),
+        (2, 'female'),
+        (3, 'other'),
+    )
+
+    BLOOD_TYPE_LIST = (
+        (1, 'A+'),
+        (2, 'A-'),
+        (3, 'B+'),
+        (4, 'B-'),
+        (5, 'O+'),
+        (6, 'O-'),
+        (7, 'AB+'),
+        (8, 'AB-'),
+    )
+
     id = models.CharField(max_length=9, primary_key=True)
     name = models.CharField(max_length=200)
-    gender = models.CharField(max_length=1)
+    gender = models.PositiveSmallIntegerField(choices=GENDERS_LIST)
     phone_num = models.CharField(max_length=13)
     age = models.IntegerField()
-    blood_type = models.CharField(max_length=3)
+    blood_type = models.PositiveSmallIntegerField(choices=BLOOD_TYPE_LIST)
     user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
     def __str__(self):
