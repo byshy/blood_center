@@ -1,3 +1,7 @@
-from django.urls import path, include
+from django.urls import path
 
-urlpatterns = []
+from users.views import CreateUserViewSet
+
+urlpatterns = [
+    path('signup/', CreateUserViewSet.as_view(), name='signup'),
+]

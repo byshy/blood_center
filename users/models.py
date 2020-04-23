@@ -18,4 +18,4 @@ class User(AbstractUser):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
-    bloodCenter = models.ForeignKey('api.BloodCenter', on_delete=models.DO_NOTHING)
+    bloodCenter = models.ForeignKey('api.BloodCenter', on_delete=models.DO_NOTHING, null=True, blank=True)

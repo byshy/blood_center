@@ -1,5 +1,4 @@
 from rest_framework import serializers
-
 from users.models import UserProfile, User
 
 
@@ -12,7 +11,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    profile = UserProfileSerializer(required=True)
+    profile = UserProfileSerializer(required=False)
 
     class Meta:
         model = User
