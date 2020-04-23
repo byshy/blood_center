@@ -1,12 +1,13 @@
+from rest_auth.views import LoginView
 from rest_framework import generics, status
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
+from users.models import User
 from users.serializers import UserSerializer
 
 
 class CreateUserViewSet(generics.CreateAPIView):
-    # create a new user account
     http_method_names = 'post'
     serializer_class = UserSerializer
     permission_classes = (AllowAny,)
@@ -28,3 +29,17 @@ class CreateUserViewSet(generics.CreateAPIView):
             }
             return Response(content)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CustomLoginView(LoginView):
+
+    def get_response(self):
+        original_response = super().get_response()
+        user = User.objects.filter(pk=original_response.data['user']['pk'])
+        user_data = UserSerializer(user, many=True)
+        print(user_data.data)
+        response = {
+            'token': original_response.data['token'],
+            'user': user_data.data
+        }
+        return Response(data=response)
