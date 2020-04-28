@@ -6,9 +6,6 @@ from django.shortcuts import render, redirect
 from users.models import User
 from users.serializers import UserSerializer
 from api.models import Donor
-from django.contrib import messages
-
-
 
 
 class CreateUserViewSet(generics.CreateAPIView):
@@ -48,28 +45,29 @@ class CustomLoginView(LoginView):
         }
         return Response(data=response)
 
+
 def searchView(request):
     if request.user.is_authenticated:
-        searchId = request.GET.get('ID', '')
-        searchGender = 1 if (request.GET.get('gender', '')) == "male" else 2
+        search_id = request.GET.get('ID', '')
+        search_gender = 1 if (request.GET.get('gender', '')) == "male" else 2
         T = request.GET.get('bloodType', '')
-        if (T == "A+"):
-            searchBloodType = 1
-        elif (T == "A-"):
-            searchBloodType = 2
-        elif (T == "B+"):
-            searchBloodType = 3
-        elif (T == "B-"):
-            searchBloodType = 4
-        elif (T == "O+"):
-            searchBloodType = 5
-        elif (T == "O-"):
-            searchBloodType = 6
-        elif (T == "AB+"):
-            searchBloodType = 7
+        if T == "A+":
+            search_blood_type = 1
+        elif T == "A-":
+            search_blood_type = 2
+        elif T == "B+":
+            search_blood_type = 3
+        elif T == "B-":
+            search_blood_type = 4
+        elif T == "O+":
+            search_blood_type = 5
+        elif T == "O-":
+            search_blood_type = 6
+        elif T == "AB+":
+            search_blood_type = 7
         else:
-            searchBloodType = 8
-        doner = (Donor.objects.filter(id = searchId) | Donor.objects.filter(gender = searchGender) | Donor.objects.filter(blood_type = searchBloodType))
+            search_blood_type = 8
+        doner = (Donor.objects.filter(id = search_id) | Donor.objects.filter(gender = search_gender) | Donor.objects.filter(blood_type = search_blood_type))
         context = {
                 'doners': doner
         }
