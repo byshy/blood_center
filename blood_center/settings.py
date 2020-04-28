@@ -137,5 +137,5 @@ REST_USE_JWT = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    '/home/mowda/Desktop/django/software project/blood_center/static/',
+    './static/',
 ]
