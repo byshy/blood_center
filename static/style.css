@@ -27,9 +27,12 @@ h1{
 }
 
 .ID{
+	width: 93%;
 	border:2px solid #aaa;
 	border-radius: 5px;
 	padding: 5px;
+	margin-top: 0.3rem;
+	margin-bottom: 0.5rem;
 }
 
 .gender{
@@ -38,6 +41,8 @@ h1{
 	border:2px solid #aaa;
 	border-radius: 5px;
 	padding: 5px;
+	margin-top: 0.3rem;
+	margin-bottom: 0.5rem;
 
 }
 
@@ -47,6 +52,8 @@ h1{
 	border:2px solid #aaa;
 	border-radius: 5px;
 	padding: 5px;
+	margin-top: 0.3rem;
+	margin-bottom: 0.5rem;
 }
 
 button{
