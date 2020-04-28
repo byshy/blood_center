@@ -49,8 +49,10 @@ class CustomLoginView(LoginView):
 def searchView(request):
     if request.user.is_authenticated:
         search_id = request.GET.get('ID', '')
+        # search_gender = request.GET.get('gender', '')
         search_gender = 1 if (request.GET.get('gender', '')) == "male" else 2
         T = request.GET.get('bloodType', '')
+        # search_blood_type = request.GET.get('bloodType', '')
         if T == "A+":
             search_blood_type = 1
         elif T == "A-":
@@ -67,9 +69,15 @@ def searchView(request):
             search_blood_type = 7
         else:
             search_blood_type = 8
-        doner = (Donor.objects.filter(id = search_id) | Donor.objects.filter(gender = search_gender) | Donor.objects.filter(blood_type = search_blood_type))
+
+        donor = (
+                Donor.objects.filter(id=search_id) |
+                Donor.objects.filter(gender=search_gender) |
+                Donor.objects.filter(blood_type=search_blood_type)
+                )
+
         context = {
-                'doners': doner
+                'doners': donor
         }
         return render(request, "search.html", context)
     else:

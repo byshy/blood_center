@@ -17,16 +17,19 @@
 		
 		<div class="form">
 			<form action= "get_doners">
-				Enter ID : <input type="text" placeholder="ID" class="ID" name ="ID" ><br>
- 
-				Select gender : <select class="gender" name="gender" > 
-					<option>choose gender</option>
+				<label>Enter ID:</label><br>
+				<input type="text" placeholder="ID" class="ID" name ="ID" ><br>
+
+ 				<label>Select gender:</label>
+				<select class="gender" name="gender" >
+					<option value="" disabled selected hidden>gender</option>
 					<option>Male</option>
 					<option>Female</option>
 				</select><br>
-				
-				Select blood type : <select class="blood" name = "bloodType">
-					<option>choose a blood type</option>
+
+				<label>Select blood type:</label>
+				<select class="blood" name = "bloodType" placeholder=""type>
+					<option value="" disabled selected hidden>type</option>
 					<option>A+</option>
 					<option>A-</option>
 					<option>B+</option>
@@ -36,7 +39,7 @@
 					<option>O+</option>
 					<option>O-</option>
 				</select><br>
-				<input type="submit">
+				<button>Search</button>
 			</form>
 		</div>
 
@@ -57,31 +60,31 @@
 					{% block content %}
 					{% for doner in doners %}
 					<tr>
-					<th> {{ doner.name }}</th>
-					<th> {{ doner.id }}</th>
-					<th> {{ doner.phone_num }}</th>
-					<th> {{ doner.age }}</th>
+						<td> {{ doner.name }}</td>
+						<td> {{ doner.id }}</td>
+						<td> {{ doner.phone_num }}</td>
+						<td> {{ doner.age }}</td>
 					{%if doner.gender == 1 %}
-						<th>Male</th>
+						<td>Male</td>
 					{% elif doner.gender == 2 %}
-						<th>Female</th>
+						<td>Female</td>
 					{% endif %}
 					{%if doner.blood_type == 1 %}
-						<th> A+</th>
+						<td>A+</td>
 					{% elif doner.blood_type == 2 %}
-						<th> A+</th>
+						<td>A+</td>
 					{% elif doner.blood_type == 3 %}
-						<th> B+</th>
+						<td>B+</td>
 					{% elif doner.blood_type == 4 %}
-						<th> B-</th>	
+						<td>B-</td>
 					{% elif doner.blood_type == 5 %}
-						<th> O+</th>
+						<td>O+</td>
 					{% elif doner.blood_type == 6 %}
-						<th> O-</th>
+						<td>O-</td>
 					{% elif doner.blood_type == 7 %}
-						<th> AB+</th>
+						<td>AB+</td>
 					{% elif doner.blood_type == 8 %}
-						<th> AB-</th>
+						<td>AB-</td>
 					{% endif %}
 					</tr> 
 					{% endfor %}
