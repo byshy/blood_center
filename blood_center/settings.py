@@ -59,7 +59,7 @@ ROOT_URLCONF = 'blood_center.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,10 +120,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
-
-STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
@@ -137,3 +133,9 @@ REST_FRAMEWORK = {
 }
 
 REST_USE_JWT = True
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    '/home/mowda/Desktop/django/software project/blood_center/static/',
+]
