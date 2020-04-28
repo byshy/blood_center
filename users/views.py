@@ -2,7 +2,7 @@ from rest_auth.views import LoginView
 from rest_framework import generics, status
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from users.models import User
 from users.serializers import UserSerializer
 from api.models import Donor
@@ -49,27 +49,30 @@ class CustomLoginView(LoginView):
         return Response(data=response)
 
 def searchView(request):
-    searchId = request.GET.get('ID', '')
-    searchGender = 1 if (request.GET.get('gender', '')) == "male" else 2
-    T = request.GET.get('bloodType', '')
-    if (T == "A+"):
-        searchBloodType = 1
-    elif (T == "A-"):
-        searchBloodType = 2
-    elif (T == "B+"):
-        searchBloodType = 3
-    elif (T == "B-"):
-        searchBloodType = 4
-    elif (T == "O+"):
-        searchBloodType = 5
-    elif (T == "O-"):
-        searchBloodType = 6
-    elif (T == "AB+"):
-        searchBloodType = 7
+    if request.user.is_authenticated:
+        searchId = request.GET.get('ID', '')
+        searchGender = 1 if (request.GET.get('gender', '')) == "male" else 2
+        T = request.GET.get('bloodType', '')
+        if (T == "A+"):
+            searchBloodType = 1
+        elif (T == "A-"):
+            searchBloodType = 2
+        elif (T == "B+"):
+            searchBloodType = 3
+        elif (T == "B-"):
+            searchBloodType = 4
+        elif (T == "O+"):
+            searchBloodType = 5
+        elif (T == "O-"):
+            searchBloodType = 6
+        elif (T == "AB+"):
+            searchBloodType = 7
+        else:
+            searchBloodType = 8
+        doner = (Donor.objects.filter(id = searchId) | Donor.objects.filter(gender = searchGender) | Donor.objects.filter(blood_type = searchBloodType))
+        context = {
+                'doners': doner
+        }
+        return render(request, "search.html", context)
     else:
-        searchBloodType = 8
-    doner = (Donor.objects.filter(id = searchId) | Donor.objects.filter(gender = searchGender) | Donor.objects.filter(blood_type = searchBloodType))
-    context = {
-            'doners': doner
-    }
-    return render(request, "search.html", context)
+        return redirect('/admin/')
