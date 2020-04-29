@@ -49,10 +49,13 @@ class CustomLoginView(LoginView):
 def searchView(request):
     if request.user.is_authenticated:
         search_id = request.GET.get('ID', '')
-        # search_gender = request.GET.get('gender', '')
-        search_gender = 1 if (request.GET.get('gender', '')) == "male" else 2
+        if request.GET.get('gender', '') == "Male":
+            search_gender = 1 
+        elif (request.GET.get('gender', '')) == "Female":
+            search_gender = 2
+        else:
+            search_gender = 0
         T = request.GET.get('bloodType', '')
-        # search_blood_type = request.GET.get('bloodType', '')
         if T == "A+":
             search_blood_type = 1
         elif T == "A-":
@@ -67,18 +70,24 @@ def searchView(request):
             search_blood_type = 6
         elif T == "AB+":
             search_blood_type = 7
-        else:
+        elif T == "AB-":
             search_blood_type = 8
-
-        donor = (
-                Donor.objects.filter(id=search_id) |
-                Donor.objects.filter(gender=search_gender) |
-                Donor.objects.filter(blood_type=search_blood_type)
-                )
-
+        else:
+            search_blood_type = 0
+        if (search_id == "") & (search_gender == 0):
+            donor = Donor.objects.filter(blood_type=search_blood_type)
+        elif (search_id == "") & (search_blood_type == 0):
+            donor = Donor.objects.filter(gender = search_gender)
+        elif (search_blood_type != 0) & (search_gender != 0) & (search_id == ""):
+            donor = ( Donor.objects.filter(blood_type=search_blood_type) &
+                     Donor.objects.filter(gender = search_gender)
+            )
+        else:
+            donor = Donor.objects.filter(id=search_id)
         context = {
                 'doners': donor
         }
+        print (donor)
         return render(request, "search.html", context)
     else:
         return redirect('/admin/')
