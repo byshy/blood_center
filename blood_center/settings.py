@@ -20,12 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'gok9_7(77636g_y^(trx4ht)rkqn!f+t)7mnhxa^f-6mk38_dn'
+SECRET_KEY = os.environ.get('BLOOD_CENTER_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['bloodcenter.herokuapp.com']
 
 
 # Application definition
