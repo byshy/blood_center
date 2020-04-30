@@ -22,7 +22,7 @@ class DonorSerializer(serializers.ModelSerializer):
             'phone_num',
             'age',
             'blood_type',
-            'admin_id',
+            'user_id',
         ]
 
 
