@@ -120,7 +120,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
@@ -133,6 +132,8 @@ REST_FRAMEWORK = {
 }
 
 REST_USE_JWT = True
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 
