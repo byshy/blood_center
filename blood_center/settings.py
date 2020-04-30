@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('BLOOD_CENTER_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = (os.environ.get('BLOOD_CENTER_DEBUG') == 'True')
 
 ALLOWED_HOSTS = ['bloodcenter.herokuapp.com']
 
