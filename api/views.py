@@ -47,7 +47,7 @@ class DonorView(APIView):
 
     def get_object(self, id):
         try:
-            return Donor.objects.get(id=id)
+            return Donor.objects.get(user_id=id)
         except Donor.DoesNotExist:
             raise Http404
 
