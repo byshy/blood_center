@@ -47,7 +47,7 @@ class DonorView(APIView):
 
     def get_object(self, id):
         try:
-            return Donor.objects.get(user_id=id)
+            return Donor.objects.get(id=id)
         except Donor.DoesNotExist:
             raise Http404
 
@@ -69,4 +69,8 @@ class HistoryListView(generics.ListAPIView):
     http_method_names = ['get']
     permission_classes = [IsAuthenticated]
     serializer_class = HistorySerializer
-    queryset = History.objects.all()
+
+    def get_queryset(self):
+        user_id = self.kwargs['user_id']
+        queryset = History.objects.filter(user_id=user_id)
+        return queryset

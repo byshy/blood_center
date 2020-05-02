@@ -21,16 +21,13 @@ class Donor(models.Model):
         (8, 'AB-'),
     )
 
-    id = models.CharField(max_length=9, primary_key=True)
-    name = models.CharField(max_length=200)
+    id = models.OneToOneField(User, on_delete=models.DO_NOTHING, primary_key=True)
     gender = models.PositiveSmallIntegerField(choices=GENDERS_LIST)
-    phone_num = models.CharField(max_length=13)
     age = models.IntegerField()
     blood_type = models.PositiveSmallIntegerField(choices=BLOOD_TYPE_LIST)
-    user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return "{} {}".format(self.id, self.name)
+        return "{}".format(self.id)
 
 
 class BloodCenter(models.Model):

@@ -153,3 +153,7 @@ STATICFILES_DIRS = [
 ]
 
 django_heroku.settings(locals())
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'users.serializers.UserSerializer',
+}

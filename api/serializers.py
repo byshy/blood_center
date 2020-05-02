@@ -17,14 +17,10 @@ class DonorSerializer(serializers.ModelSerializer):
         model = Donor
         fields = [
             'id',
-            'name',
             'gender',
-            'phone_num',
             'age',
             'blood_type',
-            'user_id',
         ]
-
 
 
 class HistorySerializer(serializers.ModelSerializer):
