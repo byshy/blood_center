@@ -24,6 +24,8 @@ class DonorSerializer(serializers.ModelSerializer):
 
 
 class HistorySerializer(serializers.ModelSerializer):
+    date = serializers.DateTimeField(format="%b %d %Y %I:%M %a")
+
     class Meta:
         model = History
         fields = [
