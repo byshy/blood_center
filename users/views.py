@@ -6,6 +6,8 @@ from django.shortcuts import render, redirect
 from users.models import User
 from users.serializers import UserSerializer
 from api.models import Donor
+from users.models import User
+
 
 
 class CreateUserViewSet(generics.CreateAPIView):
@@ -75,19 +77,18 @@ def searchView(request):
         else:
             search_blood_type = 0
         if (search_id == "") & (search_gender == 0):
-            donor = Donor.objects.filter(blood_type=search_blood_type)
+            donor = Donor.objects.filter(blood_type=search_blood_type).prefetch_related('id')
         elif (search_id == "") & (search_blood_type == 0):
-            donor = Donor.objects.filter(gender = search_gender)
+            donor = Donor.objects.filter(gender = search_gender).prefetch_related('id')
         elif (search_blood_type != 0) & (search_gender != 0) & (search_id == ""):
-            donor = ( Donor.objects.filter(blood_type=search_blood_type) &
-                     Donor.objects.filter(gender = search_gender)
+            donor = ( Donor.objects.filter(blood_type=search_blood_type).prefetch_related('id') &
+                     Donor.objects.filter(gender = search_gender).prefetch_related('id')
             )
         else:
-            donor = Donor.objects.filter(id=search_id)
+            donor = Donor.objects.filter(id=search_id).prefetch_related('id')
         context = {
                 'doners': donor
         }
-        print (donor)
         return render(request, "search.html", context)
     else:
         return redirect('/admin/')

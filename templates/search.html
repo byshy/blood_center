@@ -47,7 +47,7 @@
 			<table>
 				<thead>
 					<tr>
-						<th>Name</th>
+						<th>Username</th>
 						<th>ID</th>
 						<th>Phone Number</th>
 						<th>Age</th>
@@ -60,16 +60,16 @@
 					{% block content %}
 					{% for doner in doners %}
 					<tr>
-						<td> {{ doner.name }}</td>
-						<td> {{ doner.id }}</td>
-						<td> {{ doner.phone_num }}</td>
+						<td> {{ doner.id.username }}</td>
+						<td> {{ doner.id.id }}</td>
+						<td> {{ doner.id.mobile }}</td>
 						<td> {{ doner.age }}</td>
 					{%if doner.gender == 1 %}
 						<td>Male</td>
 					{% elif doner.gender == 2 %}
 						<td>Female</td>
 					{% endif %}
-					{%if doner.blood_type == 1 %}
+					{%if doner.id.blood_type == 1 %}
 						<td>A+</td>
 					{% elif doner.blood_type == 2 %}
 						<td>A+</td>
