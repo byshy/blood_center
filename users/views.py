@@ -9,7 +9,6 @@ from api.models import Donor
 from users.models import User
 
 
-
 class CreateUserViewSet(generics.CreateAPIView):
     http_method_names = 'post'
     serializer_class = UserSerializer
