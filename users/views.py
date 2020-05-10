@@ -3,7 +3,6 @@ from rest_framework import generics, status
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from django.shortcuts import render, redirect
-from users.models import User
 from users.serializers import UserSerializer
 from api.models import Donor
 from users.models import User
