@@ -38,7 +38,8 @@ class BloodCenterView(APIView):
             }
             return Response(content)
         except Http404:
-            return Response({'msg': 'element not found', 'status': status.HTTP_404_NOT_FOUND})
+            return Response({'msg': 'element not found', 'status': status.HTTP_404_NOT_FOUND},
+                            status=status.HTTP_404_NOT_FOUND)
 
 
 class DonorView(APIView):
@@ -62,7 +63,8 @@ class DonorView(APIView):
             }
             return Response(content)
         except Http404:
-            return Response({'msg': 'element not found', 'status': status.HTTP_404_NOT_FOUND})
+            return Response({'msg': 'element not found', 'status': status.HTTP_404_NOT_FOUND},
+                            status=status.HTTP_404_NOT_FOUND)
 
 
 class HistoryListView(generics.ListAPIView):
