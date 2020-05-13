@@ -47,7 +47,7 @@
 			<table>
 				<thead>
 					<tr>
-						<th>Username</th>
+						<th>First Name</th>
 						<th>ID</th>
 						<th>Phone Number</th>
 						<th>Age</th>
@@ -60,7 +60,7 @@
 					{% block content %}
 					{% for doner in doners %}
 					<tr>
-						<td> {{ doner.id.username }}</td>
+						<td> {{ doner.id.first_name }}</td>
 						<td> {{ doner.id.id }}</td>
 						<td> {{ doner.id.mobile }}</td>
 						<td> {{ doner.age }}</td>
